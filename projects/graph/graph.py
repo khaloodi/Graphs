@@ -28,7 +28,7 @@ class Graph:
         """
         Get all neighbors (edges) of a vertex.
         """
-        pass  # TODO
+        return self.vertices[vertex_id]
 
     def bft(self, starting_vertex):
         """
@@ -50,7 +50,7 @@ class Graph:
                 # Mark it as visited
                 visited.add(v)
                 # Then add all of its neighbors to the back of the queue
-                for neighbor in self.vertices[v]:
+                for neighbor in self.get_neighbors(v):
                     q.enqueue(neighbor)
         
 
@@ -74,12 +74,10 @@ class Graph:
                 # Mark it as visited
                 print(v)
                 visited.add(v)
-                # Then add all of its neighbors to the top of the stack
-                for neighbor in self.vertices[v]:
+                # Then push all of its neighbors to the top of the stack
+                for neighbor in self.get_neighbors(v):
                     s.push(neighbor)
                 
-                
-        pass  # TODO
 
     def dft_recursive(self, starting_vertex):
         """
@@ -88,7 +86,8 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+        # mark the node as visited
+        # call dft recursive on each neighbor that has not been visited
 
     def bfs(self, starting_vertex, destination_vertex):
         """
