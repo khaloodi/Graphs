@@ -35,11 +35,14 @@ class SocialGraph:
         """
         if user_id == friend_id:
             print("WARNING: You cannot be friends with yourself")
+            return(False)
         elif friend_id in self.friendships[user_id] or user_id in self.friendships[friend_id]:
             print("WARNING: Friendship already exists")
+            return(False)
         else:
             self.friendships[user_id].add(friend_id)
             self.friendships[friend_id].add(user_id)
+            return(True)
 
     def add_user(self, name):
         """
@@ -73,7 +76,6 @@ class SocialGraph:
         # total_friendships = avg_friendships * num_users
         # BUT have to divide by 2 b/c every time we call add friendships, it adds 2 friendships !!!
 
-        # total_friendships = avg_friendships
         # Add users
         for i in range(num_users):
             self.add_user(f" User {i + 1}")
@@ -101,6 +103,21 @@ class SocialGraph:
         for i in range(num_users * avg_friendships // 2):
             friendship = possible_friendships[i]
             self.add_friendship(friendship[0], friendship[1])
+
+        # O(N) solution:
+        # total_friendships = avg_friendships * numUsers
+        # friendshipsCreated = 0
+        # while friendshipsCreated < totalFriendships:
+            # pick a random number 1-n, pick another random number 1-n 
+            # userID = random.randint(1, self.lastID)
+            # friendID = random.randint(1, self.lastID)
+            # create friendship between those 2 ids
+            # if self.addFriendship(userID, friendID):
+                # friendshipsCreated += 2
+
+            # until you have friendship count == totalFriendships
+
+        #  totalFriendships = avg
 
 
     def get_all_social_paths(self, user_id):
